@@ -3,8 +3,9 @@ import 'package:qiita_api/repository/qiita_repository.dart';
 import 'package:qiita_api/state/qiita_client_state.dart';
 
 final qiitaClientViewModelProvider =
-StateNotifierProvider.autoDispose<QiitaClientViewModel, QiitaClientState>(
-        (ref) => QiitaClientViewModel(ref));
+    StateNotifierProvider.autoDispose<QiitaClientViewModel, QiitaClientState>(
+  QiitaClientViewModel.new,
+);
 
 class QiitaClientViewModel extends StateNotifier<QiitaClientState> {
   QiitaClientViewModel(this._ref) : super(const QiitaClientState());
@@ -15,7 +16,7 @@ class QiitaClientViewModel extends StateNotifier<QiitaClientState> {
     state = state.copyWith(isLoading: true);
 
     final qiitaItems =
-    await _ref.read(qiitaRepositoryProvider).fetchQiitaItems(tag);
+        await _ref.read(qiitaRepositoryProvider).fetchQiitaItems(tag);
 
     if (qiitaItems.isNotEmpty) {
       state = state.copyWith(
