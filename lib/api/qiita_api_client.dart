@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:qiita_api/model/qiita_item.dart';
+
 // ignore: depend_on_referenced_packages
 import 'package:retrofit/retrofit.dart';
 
@@ -12,4 +13,3 @@ abstract class QiitaApiClient {
   @GET('/tags/{tag}/items')
   Future<List<QiitaItem>> fetchQiitaItems(@Path('tag') String tag);
 }
-
